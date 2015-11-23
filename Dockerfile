@@ -8,6 +8,11 @@ workdir /usr/share/nginx
 volume ["/usr/share/nginx"]
 expose 80
 cmd \
-  set -o pipefail && \
-  echo "RECURSIVE = YES; CREATE_SUBDIRS = YES" | doxygen - && \
+  set -o pipefail                           && \
+  export DOXYFILE=$(mktemp)                 && \
+  echo "\${DOXYFILE} == \"${DOXYFILE}\""    && \
+  >>${DOXYFILE} echo "RECURSIVE = YES"      && \
+  >>${DOXYFILE} echo "CREATE_SUBDIRS = yes" && \
+  cat ${DOXYFILE}                           && \
+  doxygen ${DOXYFILE}                       && \
   nginx -g 'daemon off; error_log stderr info;'
