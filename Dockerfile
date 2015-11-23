@@ -12,4 +12,4 @@ copy . .
 
 run echo "RECURSIVE = YES; CREATE_SUBDIRS = YES" | doxygen -
 
-cmd nginx -g 'daemon off; error_log stderr info'
+cmd nginx -g 'daemon off; error_log stderr info;'
