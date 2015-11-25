@@ -12,7 +12,9 @@ cmd \
   export DOXYFILE=$(mktemp)                 && \
   echo "\${DOXYFILE} == \"${DOXYFILE}\""    && \
   >>${DOXYFILE} echo "RECURSIVE = YES"      && \
-  >>${DOXYFILE} echo "CREATE_SUBDIRS = yes" && \
+  >>${DOXYFILE} echo "CREATE_SUBDIRS = YES" && \
+  >>${DOXYFILE} echo "SOURCE_BROWSER = YES" && \
+  >>${DOXYFILE} echo "INLINE_SOURCES = YES" && \
   cat ${DOXYFILE}                           && \
   doxygen ${DOXYFILE}                       && \
   nginx -g 'daemon off; error_log stderr info;'
